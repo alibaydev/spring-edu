@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ProductController {
 
         return productDAO.getProduct(id)
                 .map(product -> {
-                    model.addAttribute("product", exchangeService.getUrl().toString());
+                    model.addAttribute("product", product);
                     return "product/list";
                 }).orElseThrow(RuntimeException::new);
     }
